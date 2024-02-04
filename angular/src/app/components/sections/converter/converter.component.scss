@@ -1,0 +1,173 @@
+.currency-exchanger-section {
+  position: sticky;
+  top: 10px; // Adjust top value based on your design preference
+  margin-top: 10px; // Add margin on top
+  p {
+    display: flex;
+    align-items: center; // Vertical centering
+    justify-content: space-between; // Spacing between child items
+    height: 30px; // Make sure the container takes the full height
+
+    .currency-label {
+      margin-right: 10px; // Adjust margin as needed
+    }
+  }
+
+  .exchange-details {
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    padding: 10px;
+
+    .exchange-row {
+      display: flex;
+      margin-bottom: 10px;
+
+      .column {
+        flex: 1;
+        padding: 0 5px;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+
+        label {
+          display: block;
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+
+        select {
+          background-color: #6e6e6e; /* light gray background */
+          color: #000000; /* text color */
+          text-align-last: right; /* align text to the right */
+          appearance: none;
+          color: #ffffff;
+          border: 1px solid #6e6e6e; /* border color */
+          border-radius: 3px;
+          padding: 8px 25px 8px 8px; /* adjust padding as needed */
+          box-sizing: border-box; /* include padding and border in total width */
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="%23FFFFFF"><path d="M7 10l5 5 5-5z"/></svg>');
+          background-repeat: no-repeat;
+          background-position: calc(100% - 5px) center;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+
+          &::-ms-expand {
+            display: none; /* hide the arrow in Internet Explorer */
+          }
+
+          &:focus {
+            outline: none; /* Optional: Remove the default focus outline */
+          }
+
+          &::after {
+            content: '\25BC'; /* Unicode character for a down arrow */
+            position: absolute;
+            top: 50%;
+            right: 10px; /* adjust right offset as needed */
+            transform: translateY(-50%);
+            pointer-events: none; /* make sure the arrow does not interfere with clicks */
+          }
+        }
+
+        input,
+        select,
+        button {
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        input[type="number"] {
+          -moz-appearance: textfield; /* Firefox */
+        }
+
+        input {
+          background-color: #000000;
+          color: #ffffff;
+          border: 1px solid #ffffff;
+          border-radius: 3px;
+          text-align: center;
+          padding: 8px;
+
+          &:focus {
+            outline: none; // Optional: Remove the default focus outline
+          }
+        }
+      }
+
+      .info {
+        text-align: center;
+
+        .info-text {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ffffff;
+          border-radius: 3px;
+          padding: 5px 0 5px;
+        }
+
+        .full-height {
+          height: 100%;
+          margin: 0;
+        }
+      }
+
+      .arrow-column {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .arrow {
+          font-size: 3vw; // Responsive font size based on the viewport width
+        }
+      }
+
+      .span-one {
+        max-width: calc((100% / 4) - 8px);
+      }
+
+      .span-two {
+        max-width: calc((100% / 4 * 2) - 8px);
+      }
+
+      .span-three {
+        max-width: calc((100% / 4 * 3) - 8px);
+      }
+    }
+
+    .padding-three {
+      width: calc((100% / 4 * 3));
+      margin-left: calc((100% / 4));
+    }
+  }
+  .buttons-container {
+    display: flex;
+
+    button {
+      flex: 1;
+      color: #ffffff; /* white text color */
+      background-color: #007bff; /* blue background color */
+      border-radius: 3px;
+      padding: 8px;
+      border: none;
+      cursor: pointer;
+      max-height: 35px;
+      align-self: center;
+
+      &:not(:last-child) {
+        margin-right: 8px; /* adjust margin as needed */
+      }
+    }
+  }
+}

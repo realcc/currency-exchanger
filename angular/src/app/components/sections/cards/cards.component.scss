@@ -1,0 +1,12 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+
+  .box {
+    height: 100px; // Adjust the height of the boxes as needed
+    border: 1px solid #fff; // Black border
+    border-radius: 8px; // Adjust border-radius as needed for rounded corners
+  }
+}

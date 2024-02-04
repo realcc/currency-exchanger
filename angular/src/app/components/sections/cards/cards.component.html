@@ -1,0 +1,8 @@
+<div class="cards">
+  <ng-container *ngFor="let currentCurrency of currencyValues">
+    <app-currency
+      [amount]="currentCurrency.value"
+      [currency]="currentCurrency.currency">
+    </app-currency>
+  </ng-container>
+</div>
