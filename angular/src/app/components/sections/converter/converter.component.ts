@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CurrencyService } from "../../../services/currency.service";
 import { CurrencyValue } from "../../../models/currency-value.model";
 import { Router } from '@angular/router';
@@ -8,13 +8,12 @@ import { Router } from '@angular/router';
   templateUrl: './converter.component.html',
   styleUrls: ['./converter.component.scss']
 })
-export class ConverterComponent {
-  amount: number = 0;
-  fromCurrency: string = 'EUR';
-  toCurrency: string = 'USD';
-  exchangeRate: number = 1.20;
-  convertedAmount: number = 0;
+export class ConverterComponent implements OnInit {
+  amount: number = 1;
+  newAmount: number = 1;
   currencyValues: CurrencyValue[] = this.currencyService.getCurrencyValues();
+  @Input() fromCurrency: string = 'EUR';
+  @Input() toCurrency: string = 'USD';
   @Input() detail: boolean = false;
 
   constructor(
@@ -23,8 +22,32 @@ export class ConverterComponent {
   ) {
   }
 
+  ngOnInit() {
+    this.getCurrencyRates('EUR');
+  }
+
+  getCurrencyRates(baseCurrency: string): void {
+    /* this.currencyService.getCurrencyRates(baseCurrency).subscribe(
+      (rates: { [currency: string]: number }) => {
+        this.amount = this.newAmount;
+        this.currencyValues.forEach(currency => {
+          const rate = rates[currency.currency];
+          currency.value = (rate * this.amount) || 0;
+        });
+      },
+      error => {
+        console.error('Error fetching currency rates:', error);
+      }
+    ); */
+  }
+
+  getCurrencyRate(toCurrency: string): number {
+    const currency = this.currencyValues.find(c => c.currency === toCurrency);
+    return currency ? currency.value : 0;
+  }
+
   convert(): void {
-    this.convertedAmount = this.amount * this.exchangeRate;
+    this.getCurrencyRates(this.fromCurrency);
   }
 
   showDetails(): void {
@@ -33,5 +56,11 @@ export class ConverterComponent {
 
   backToHome(): void {
     this.router.navigate(['/']);
+  }
+
+  swapCurrency(): void {
+    const tempCurrency: string = this.fromCurrency;
+    this.fromCurrency = this.toCurrency;
+    this.toCurrency = tempCurrency;
   }
 }

@@ -25,13 +25,19 @@ Follow these steps to get the project up and running on your local machine.
    git clone https://github.com/realcc/currency-exchanger.git
    ```
 
-2. Navigate to the project directory:
+2. Enter the `fixerApiKey` in the following file:
+
+   ```
+   angular/src/environments/environments.ts
+   ```
+
+3. Navigate to the project directory:
 
    ```bash
    cd currency-exchanger
    ```
 
-3. Run Docker setup:
+4. Run Docker setup:
 
    ```bash
    make docker-up
@@ -39,7 +45,7 @@ Follow these steps to get the project up and running on your local machine.
 
    This command will build and run the Docker containers.
 
-4. Open your browser and navigate to http://localhost/.
+5. Open your browser and navigate to http://localhost/.
 
 ## Project Structure
 

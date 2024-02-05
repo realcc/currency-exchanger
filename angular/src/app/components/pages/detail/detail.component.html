@@ -1,5 +1,9 @@
 <div class="detail">
   <app-header></app-header>
-  <app-converter [detail]="true"></app-converter>
+  <app-converter
+    [detail]="true"
+    [fromCurrency]="fromCurrency"
+    [toCurrency]="toCurrency">
+  </app-converter>
   <app-chart></app-chart>
 </div>

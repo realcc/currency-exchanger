@@ -2,6 +2,8 @@
   position: sticky;
   top: 10px; // Adjust top value based on your design preference
   margin-top: 10px; // Add margin on top
+  background-color: #000000;
+
   p {
     display: flex;
     align-items: center; // Vertical centering
@@ -130,6 +132,7 @@
 
         .arrow {
           font-size: 3vw; // Responsive font size based on the viewport width
+          cursor: pointer;
         }
       }
 
