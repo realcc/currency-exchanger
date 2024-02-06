@@ -168,6 +168,10 @@
       max-height: 35px;
       align-self: center;
 
+      &:disabled {
+        background-color: grey !important;
+      }
+
       &:not(:last-child) {
         margin-right: 8px; /* adjust margin as needed */
       }
