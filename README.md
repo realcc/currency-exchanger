@@ -95,7 +95,7 @@ Karma and Pupetter are used for Unit Testing to run each test in Google Chrome H
 For testing all of the cases, run the following command:
 
 ```bash
-   npm run format
+   npm run test
 ```
 
 ## Dependencies
