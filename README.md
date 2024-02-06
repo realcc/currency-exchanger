@@ -2,6 +2,14 @@
 
 Currency Exchanger is a feature-rich currency converter application developed using Angular. It allows users to convert currencies, view historical data, and explore details of different currency pairs.
 
+## Screenshots
+
+### Main Page
+![Main](screenshots/main.png)
+
+### Detail Page
+![Historical Chart](screenshots/historical_chart.png)
+
 ## Features
 
 - **Currency Conversion:** Convert currencies with ease.
