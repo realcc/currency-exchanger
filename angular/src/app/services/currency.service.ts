@@ -127,13 +127,10 @@ export class CurrencyService {
   processHistoricalRates(responses: any[], toCurrency: string): any {
     const monthlyRates: ChartValue[] = [];
 
-    responses.forEach((response: any, index: number) => {
+    responses.forEach((response: any) => {
       if (response.success && response.historical) {
         const rates = response.rates;
         const date = response.date;
-
-        const parts = date.split('-');
-        const yearMonth = `${parts[0]}-${parts[1]}`;
 
         monthlyRates.push({
           month: `${new Date(date).toLocaleString('en-us', { month: 'short' })} ${new Date(date).getFullYear()}`,

@@ -9,7 +9,7 @@ import { ChartValue } from '../../../models/chart-value.model';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
 })
-export class ChartComponent implements AfterViewInit, OnInit {
+export class ChartComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef<HTMLCanvasElement>;
   private resizeSubscription!: Subscription;
   chartData: ChartValue[] = [];
@@ -75,7 +75,6 @@ export class ChartComponent implements AfterViewInit, OnInit {
       const marginBottom = 20;
       const effectiveWidth = width - marginLeft - marginRight;
       const effectiveHeight = height - marginTop - marginBottom;
-      const xScale = effectiveWidth / (this.chartData.length - 1);
       const yScale = effectiveHeight / Math.max(...this.chartData.map(dataPoint => dataPoint.rate));
 
       context.clearRect(0, 0, width, height);

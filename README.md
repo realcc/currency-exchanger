@@ -68,6 +68,16 @@ Follow these steps to get the project up and running on your local machine.
 - src/app/services: Currency service for managing currency-related data.
 - src/app/models: Contains data models.
 
+## Lint
+
+This project is using ESLint version ^8.56.0 for linting.
+
+The command for running the linting:
+
+```bash
+   npm run lint
+```
+
 ## Dependencies
 
 - Angular
