@@ -1,6 +1,7 @@
 <div class="detail">
-  <app-header></app-header>
+  <app-header [newAmount]="newAmount"></app-header>
   <app-converter
+    (newAmountChange)="handleNewAmountChange($event)"
     [detail]="true"
     [fromCurrency]="fromCurrency"
     [toCurrency]="toCurrency">

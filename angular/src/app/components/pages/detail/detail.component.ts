@@ -7,10 +7,15 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
+  newAmount: number = 1
   fromCurrency: string = ''
   toCurrency: string = ''
 
   constructor(private route: ActivatedRoute) {}
+
+  handleNewAmountChange(updatedAmount: number): void {
+    this.newAmount = updatedAmount
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

@@ -3,7 +3,7 @@
     <img src="assets/logo.png" alt="Logo">
   </div>
   <div class="nav-links">
-    <button (click)="navigateToDetails('EUR', 'USD')">EUR-USD Details</button>
-    <button (click)="navigateToDetails('EUR', 'GBP')">EUR-GBP Details</button>
+    <button (click)="navigateToDetails('EUR', 'USD')" [disabled]="!newAmount">EUR-USD Details</button>
+    <button (click)="navigateToDetails('EUR', 'GBP')" [disabled]="!newAmount">EUR-GBP Details</button>
   </div>
 </div>

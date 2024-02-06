@@ -1,5 +1,5 @@
 <div class="home">
-  <app-header></app-header>
-  <app-converter></app-converter>
+  <app-header [newAmount]="newAmount"></app-header>
+  <app-converter (newAmountChange)="handleNewAmountChange($event)"></app-converter>
   <app-cards></app-cards>
 </div>

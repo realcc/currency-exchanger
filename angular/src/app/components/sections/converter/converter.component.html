@@ -8,7 +8,7 @@
           }}
         </span>
         <span class="buttons-container" *ngIf="detail">
-          <button (click)="backToHome()">Back to Home</button>
+          <button (click)="backToHome()" [disabled]="!newAmount">Back to Home</button>
         </span>
       </p>
     </div>
@@ -18,12 +18,12 @@
       <div class="exchange-row">
         <div class="column">
           <label for="amount">Amount</label>
-          <input type="number" id="amount" [(ngModel)]="newAmount" />
+          <input type="number" id="amount" [(ngModel)]="newAmount" (input)="updateNewAmount()" />
         </div>
 
         <div class="column">
           <label for="fromCurrency">From</label>
-          <select id="fromCurrency" [(ngModel)]="fromCurrency">
+          <select id="fromCurrency" [(ngModel)]="fromCurrency" [disabled]="!newAmount">
             <ng-container *ngFor="let symbol of supportedSymbols | keyvalue">
               <option [value]="symbol.key">
                 {{ symbol.key }}
@@ -38,7 +38,7 @@
 
         <div class="column">
           <label for="toCurrency">To</label>
-          <select id="toCurrency" [(ngModel)]="toCurrency">
+          <select id="toCurrency" [(ngModel)]="toCurrency" [disabled]="!newAmount">
             <ng-container *ngFor="let symbol of supportedSymbols | keyvalue">
               <option [value]="symbol.key">
                 {{ symbol.key }}
@@ -50,7 +50,7 @@
 
       <!-- Second Row -->
       <div class="exchange-row buttons-container padding-three">
-        <button (click)="convert()">Convert</button>
+        <button (click)="convert()" [disabled]="!newAmount">Convert</button>
       </div>
 
       <!-- Third Row -->
@@ -64,7 +64,7 @@
         </div>
 
         <div class="column buttons-container span-one" *ngIf="!detail">
-          <button (click)="showDetails()">More details</button>
+          <button (click)="showDetails()" [disabled]="!newAmount">More details</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core'
 import { CurrencyService } from '../../../services/currency.service'
 import { CurrencyValue } from '../../../models/currency-value.model'
 import { Router } from '@angular/router'
@@ -16,6 +16,7 @@ export class ConverterComponent implements OnInit {
   @Input() fromCurrency: string = 'EUR'
   @Input() toCurrency: string = 'USD'
   @Input() detail: boolean = false
+  @Output() newAmountChange = new EventEmitter<number>()
 
   constructor(
     public currencyService: CurrencyService,
@@ -51,8 +52,14 @@ export class ConverterComponent implements OnInit {
   }
 
   swapCurrency(): void {
-    const tempCurrency: string = this.fromCurrency
-    this.fromCurrency = this.toCurrency
-    this.toCurrency = tempCurrency
+    if (this.newAmount) {
+      const tempCurrency: string = this.fromCurrency
+      this.fromCurrency = this.toCurrency
+      this.toCurrency = tempCurrency
+    }
+  }
+
+  updateNewAmount() {
+    this.newAmountChange.emit(this.newAmount)
   }
 }
