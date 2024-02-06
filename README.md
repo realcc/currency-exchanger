@@ -88,6 +88,16 @@ To format the code, use the following command:
    npm run format
 ```
 
+## Unit Test
+
+Karma and Pupetter are used for Unit Testing to run each test in Google Chrome Headless.
+
+For testing all of the cases, run the following command:
+
+```bash
+   npm run format
+```
+
 ## Dependencies
 
 - Angular

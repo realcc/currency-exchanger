@@ -1,31 +1,43 @@
-import { TestBed } from '@angular/core/testing'
-import { RouterTestingModule } from '@angular/router/testing'
-import { ChartComponent } from './chart.component'
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ChartComponent } from './chart.component';
+import { CurrencyService } from '../../../services/currency.service';
+import { HttpClientModule } from '@angular/common/http'
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+describe('ChartComponent', () => {
+  let fixture: ComponentFixture<ChartComponent>;
+  let component: ChartComponent;
+  let currencyService: CurrencyService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [ChartComponent],
-    }).compileComponents()
-  })
+      imports: [HttpClientModule],
+      providers: [CurrencyService], // Add the service to the providers
+    });
+
+    fixture = TestBed.createComponent(ChartComponent);
+    component = fixture.componentInstance;
+    currencyService = TestBed.inject(CurrencyService); // Inject the service
+
+    spyOn(currencyService, 'fetchHistoricalRates'); // Mock the service method
+  });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(ChartComponent)
-    const app = fixture.componentInstance
-    expect(app).toBeTruthy()
-  })
+    expect(component).toBeTruthy();
+  });
 
-  it(`should have as title 'angular'`, () => {
-    const fixture = TestBed.createComponent(ChartComponent)
-    const app = fixture.componentInstance
-    expect(app.title).toEqual('angular')
-  })
+  it('should have a canvas with class "chart"', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    const chartCanvas = compiled.querySelector('.chart');
+    expect(chartCanvas).toBeTruthy();
+  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(ChartComponent)
-    fixture.detectChanges()
-    const compiled = fixture.nativeElement as HTMLElement
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular app is running!')
-  })
-})
+  it('should call fetchHistoricalRates on ngOnInit', () => {
+    spyOn(component, 'fetchHistoricalRates');
+    component.ngOnInit();
+    expect(component.fetchHistoricalRates).toHaveBeenCalled();
+  });
+
+  // Add more tests as needed for other methods and functionalities
+});

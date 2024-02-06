@@ -19,7 +19,7 @@ export class ConverterComponent implements OnInit {
 
   constructor(
     public currencyService: CurrencyService,
-    private router: Router,
+    public router: Router,
   ) {}
 
   ngOnInit() {

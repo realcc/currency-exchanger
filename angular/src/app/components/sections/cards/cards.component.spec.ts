@@ -1,31 +1,49 @@
-import { TestBed } from '@angular/core/testing'
-import { RouterTestingModule } from '@angular/router/testing'
-import { CardsComponent } from './cards.component'
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CardsComponent } from './cards.component';
+import { CurrencyComponent } from './currency/currency.component'
+import { CurrencyService } from '../../../services/currency.service';
+import { CurrencyValue } from '../../../models/currency-value.model';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [CardsComponent],
-    }).compileComponents()
-  })
+describe('CardsComponent', () => {
+  let fixture: ComponentFixture<CardsComponent>;
+  let component: CardsComponent;
+  let mockCurrencyService: jasmine.SpyObj<CurrencyService>;
+
+  beforeEach(() => {
+    mockCurrencyService = jasmine.createSpyObj('CurrencyService', ['getCurrencyValues']);
+    mockCurrencyService.getCurrencyValues.and.returnValue([
+      { value: 1.23, currency: 'USD' },
+      { value: 0.88, currency: 'EUR' },
+      // Add more sample data as needed
+    ]);
+
+    TestBed.configureTestingModule({
+      declarations: [
+        CardsComponent,
+        CurrencyComponent
+      ],
+      providers: [{ provide: CurrencyService, useValue: mockCurrencyService }],
+    });
+
+    fixture = TestBed.createComponent(CardsComponent);
+    component = fixture.componentInstance;
+  });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(CardsComponent)
-    const app = fixture.componentInstance
-    expect(app).toBeTruthy()
-  })
+    expect(component).toBeTruthy();
+  });
 
-  it(`should have as title 'angular'`, () => {
-    const fixture = TestBed.createComponent(CardsComponent)
-    const app = fixture.componentInstance
-    expect(app.title).toEqual('angular')
-  })
+  it('should have a div with class "cards"', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    const cardsDiv = compiled.querySelector('.cards');
+    expect(cardsDiv).toBeTruthy();
+  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(CardsComponent)
-    fixture.detectChanges()
-    const compiled = fixture.nativeElement as HTMLElement
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular app is running!')
-  })
-})
+  it('should display a set of app-currency components', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    const currencyComponents = compiled.querySelectorAll('app-currency');
+    expect(currencyComponents.length).toBe(2); // Adjust based on the number of sample data provided
+  });
+});

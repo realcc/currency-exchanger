@@ -1,31 +1,48 @@
-import { TestBed } from '@angular/core/testing'
-import { RouterTestingModule } from '@angular/router/testing'
-import { HomeComponent } from './home.component'
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { DetailComponent } from './detail.component';
+import { HeaderComponent } from '../../sections/header/header.component'
+import { ConverterComponent } from '../../sections/converter/converter.component'
+import { ChartComponent } from '../../sections/chart/chart.component'
+import { of } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http'
 
-describe('DetailsComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [HomeComponent],
-    }).compileComponents()
-  })
+describe('DetailComponent', () => {
+  let component: DetailComponent;
+  let fixture: ComponentFixture<DetailComponent>;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(HomeComponent)
-    const app = fixture.componentInstance
-    expect(app).toBeTruthy()
-  })
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        DetailComponent,
+        HeaderComponent,
+        ConverterComponent,
+        ChartComponent
+      ],
+      imports: [HttpClientModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of(convertToParamMap({ from: 'EUR', to: 'USD' })),
+            snapshot: {
+              paramMap: convertToParamMap({ from: 'EUR', to: 'USD' })
+            }
+          }
+        }
+      ]
+    }).compileComponents();
+  }));
 
-  it(`should have as title 'angular'`, () => {
-    const fixture = TestBed.createComponent(HomeComponent)
-    const app = fixture.componentInstance
-    expect(app.title).toEqual('angular')
-  })
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DetailComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(HomeComponent)
-    fixture.detectChanges()
-    const compiled = fixture.nativeElement as HTMLElement
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular app is running!')
-  })
-})
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  // Add more tests as needed
+});

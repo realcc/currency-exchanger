@@ -1,31 +1,41 @@
-import { TestBed } from '@angular/core/testing'
-import { RouterTestingModule } from '@angular/router/testing'
-import { HeaderComponent } from './header.component'
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HeaderComponent } from './header.component';
+import { Router } from '@angular/router';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+describe('HeaderComponent', () => {
+  let fixture: ComponentFixture<HeaderComponent>;
+  let component: HeaderComponent;
+  let router: Router;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [HeaderComponent],
-    }).compileComponents()
-  })
+      imports: [RouterTestingModule],
+    });
+
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    router = TestBed.inject(Router);
+
+    spyOn(router, 'navigate');
+  });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(HeaderComponent)
-    const app = fixture.componentInstance
-    expect(app).toBeTruthy()
-  })
+    expect(component).toBeTruthy();
+  });
 
-  it(`should have as title 'angular'`, () => {
-    const fixture = TestBed.createComponent(HeaderComponent)
-    const app = fixture.componentInstance
-    expect(app.title).toEqual('angular')
-  })
+  it('should navigate to details with EUR-USD on button click', () => {
+    const button = fixture.nativeElement.querySelector('button');
+    button.click();
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(HeaderComponent)
-    fixture.detectChanges()
-    const compiled = fixture.nativeElement as HTMLElement
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular app is running!')
-  })
-})
+    expect(router.navigate).toHaveBeenCalledWith(['/detail', 'EUR', 'USD']);
+  });
+
+  it('should navigate to details with EUR-GBP on second button click', () => {
+    const buttons = fixture.nativeElement.querySelectorAll('button');
+    buttons[1].click();
+
+    expect(router.navigate).toHaveBeenCalledWith(['/detail', 'EUR', 'GBP']);
+  });
+});
