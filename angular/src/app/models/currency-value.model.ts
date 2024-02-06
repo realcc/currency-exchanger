@@ -1,4 +1,4 @@
 export interface CurrencyValue {
-  value: number;
-  currency: string;
+  value: number
+  currency: string
 }

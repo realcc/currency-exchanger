@@ -78,6 +78,16 @@ The command for running the linting:
    npm run lint
 ```
 
+## Formatting
+
+This project utilizes Prettier version ^3.2.5 to format the code.
+
+To format the code, use the following command:
+
+```bash
+   npm run format
+```
+
 ## Dependencies
 
 - Angular
