@@ -101,6 +101,11 @@ For testing all of the cases, run the following command:
    npm run test
 ```
 
+## Free API Limitation
+
+- Allows only EUR as base currency. The swap button works but the result may not be correct unless it is using paid API.
+- Allows only Latest and Historical data. It might be not efficient to use historical data for populating the chart data. Time series data are preferred but requires paid API.
+
 ## Dependencies
 
 - Angular
