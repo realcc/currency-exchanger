@@ -12,6 +12,7 @@ export class ConverterComponent implements OnInit {
   amount: number = 1;
   newAmount: number = 1;
   currencyValues: CurrencyValue[] = this.currencyService.getCurrencyValues();
+  supportedSymbols: { [key: string]: string } = {};
   @Input() fromCurrency: string = 'EUR';
   @Input() toCurrency: string = 'USD';
   @Input() detail: boolean = false;
@@ -23,22 +24,14 @@ export class ConverterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currencyService.fetchSupportedSymbols();
+    this.supportedSymbols = this.currencyService.supportedSymbols;
     this.getCurrencyRates('EUR');
   }
 
   getCurrencyRates(baseCurrency: string): void {
-    /* this.currencyService.getCurrencyRates(baseCurrency).subscribe(
-      (rates: { [currency: string]: number }) => {
-        this.amount = this.newAmount;
-        this.currencyValues.forEach(currency => {
-          const rate = rates[currency.currency];
-          currency.value = (rate * this.amount) || 0;
-        });
-      },
-      error => {
-        console.error('Error fetching currency rates:', error);
-      }
-    ); */
+    this.currencyService.fetchCurrencyRates(baseCurrency, this.newAmount);
+    this.amount = this.newAmount;
   }
 
   getCurrencyRate(toCurrency: string): number {

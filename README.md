@@ -8,6 +8,12 @@ Currency Exchanger is a feature-rich currency converter application developed us
 - **Currency Details:** Explore details of specific currency pairs.
 - **Historical Data:** View historical exchange rates through charts.
 
+In order to minimize the Fixer API Call due to limited 100 calls per month for a free plan, the responses are cached with the following predefined duration.
+
+- **Currency Rate:** 1 day
+- **Symbols:** 1 week
+- **Historical Data:** End of month
+
 ## Getting Started
 
 Follow these steps to get the project up and running on your local machine.

@@ -16,10 +16,6 @@ export class DetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.fromCurrency = params['from'];
       this.toCurrency = params['to'];
-
-      // Now you have access to fromCurrency and toCurrency
-      console.log('From Currency:', this.fromCurrency);
-      console.log('To Currency:', this.toCurrency);
     });
   }
 }

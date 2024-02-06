@@ -24,9 +24,9 @@
         <div class="column">
           <label for="fromCurrency">From</label>
           <select id="fromCurrency" [(ngModel)]="fromCurrency">
-            <ng-container *ngFor="let currentCurrency of currencyValues">
-              <option [value]="currentCurrency.currency">
-                {{ currentCurrency.currency }}
+            <ng-container *ngFor="let symbol of supportedSymbols | keyvalue">
+              <option [value]="symbol.key">
+                {{ symbol.key }}
               </option>
             </ng-container>
           </select>
@@ -39,9 +39,9 @@
         <div class="column">
           <label for="toCurrency">To</label>
           <select id="toCurrency" [(ngModel)]="toCurrency">
-            <ng-container *ngFor="let currentCurrency of currencyValues">
-              <option [value]="currentCurrency.currency">
-                {{ currentCurrency.currency }}
+            <ng-container *ngFor="let symbol of supportedSymbols | keyvalue">
+              <option [value]="symbol.key">
+                {{ symbol.key }}
               </option>
             </ng-container>
           </select>

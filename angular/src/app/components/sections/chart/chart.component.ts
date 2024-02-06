@@ -24,16 +24,8 @@ export class ChartComponent implements AfterViewInit, OnInit {
   }
 
   fetchHistoricalRates(fromCurrency: string, toCurrency: string): void {
-    this.currencyService.getHistoricalRates(fromCurrency, toCurrency)
-      .subscribe(
-        (responses) => {
-          this.chartData = this.currencyService.processHistoricalRates(responses, toCurrency);
-          this.drawChart();
-        },
-        (error) => {
-          console.error('Error fetching historical rates:', error);
-        }
-      );
+    this.currencyService.fetchHistoricalRates(fromCurrency, toCurrency);
+    this.chartData = this.currencyService.chartData;
   }
 
   ngAfterViewInit(): void {
